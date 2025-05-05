@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{QuizMaker}</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <i class="fas fa-brain logo-icon"></i>
+                <h1 class="logo-text"><span class="logo-highlight">{</span>QuizMaker<span class="logo-highlight">}</span></h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#" class="active" id="home-tab"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" id="create-tab"><i class="fas fa-plus-circle"></i> Create Quiz</a></li>
+                    <li><a href="#" id="take-tab"><i class="fas fa-play-circle"></i> Take Quiz</a></li>
+                    <li><a href="#" id="leaderboard-tab"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section id="home-section" class="content-section active">
+                <div class="hero-section">
+                    <div class="hero-text">
+                        <h2>Create & Take Amazing Quizzes</h2>
+                        <p>Design custom quizzes with multiple question types, track results, and compete with friends on the leaderboard!</p>
+                        <div class="cta-buttons">
+                            <button class="btn-primary" id="start-creating-btn">Start Creating</button>
+                            <button class="btn-secondary" id="start-quiz-btn">Take a Quiz</button>
+                        </div>
+                    </div>
+                    <div class="student-image">
+                        <img src="student.png" alt="Quiz illustration">
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <h3 class="section-title">Why Choose QuizMaker Pro?</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <h4>Multiple Question Types</h4>
+                            <p>Support for single answer, multiple choice, and text response questions.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h4>Leaderboard</h4>
+                            <p>Track top performers and compete with others.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <h4>Tagging System</h4>
+                            <p>Organize quizzes by topics and difficulty.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4>Responsive Design</h4>
+                            <p>Works perfectly on all devices.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="create-section" class="content-section">
+                <div class="quiz-creator">
+                    <h2 class="section-title">Create Your Quiz</h2>
+                    <div class="quiz-meta">
+                        <div class="form-group">
+                            <label for="quiz-title">Quiz Title</label>
+                            <input type="text" id="quiz-title" placeholder="Enter quiz title">
+                        </div>
+                        <div class="form-group">
+                            <label for="quiz-description">Description</label>
+                            <textarea id="quiz-description" placeholder="Enter quiz description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="quiz-tags">Tags (comma separated)</label>
+                            <input type="text" id="quiz-tags" placeholder="e.g., math, beginner, science">
+                        </div>
+                    </div>
+
+                    <div class="questions-container" id="questions-container">
+                    </div>
+
+                    <div class="add-question-section">
+                        <button class="btn-primary" id="add-question-btn">Add Question</button>
+                        <div class="question-type-selector">
+                            <select id="question-type-select">
+                                <option value="single">Single Answer</option>
+                                <option value="multiple">Multiple Choice</option>
+                                <option value="text">Text Answer</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="quiz-actions">
+                        <button class="btn-primary" id="save-quiz-btn">Save Quiz</button>
+                        <button class="btn-secondary" id="preview-quiz-btn">Preview Quiz</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="take-section" class="content-section">
+                <div class="quiz-selector">
+                    <h2 class="section-title">Available Quizzes</h2>
+                    
+                    <div class="search-filter">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="quiz-search" placeholder="Search quizzes...">
+                        </div>
+                        <div class="filter-tags">
+                            <span class="filter-label">Filter by tag:</span>
+                            <div class="tags-container" id="tags-container">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quizzes-grid" id="quizzes-grid">
+                    </div>
+
+                    <div class="pagination" id="pagination">
+                    </div>
+                </div>
+            </section>
+            <section id="leaderboard-section" class="content-section">
+                <div class="leaderboard-container">
+                    <h2 class="section-title">Leaderboard</h2>
+                    <div class="leaderboard-tabs">
+                        <button class="tab-btn active" data-board="overall">Overall</button>
+                        <button class="tab-btn" data-board="weekly">This Week</button>
+                        <button class="tab-btn" data-board="monthly">This Month</button>
+                    </div>
+                    <div class="leaderboard-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>User</th>
+                                    <th>Quizzes Taken</th>
+                                    <th>Average Score</th>
+                                    <th>Total Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <div class="modal" id="quiz-preview-modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="quiz-preview-content"></div>
+                </div>
+            </div>
+
+            <div class="modal" id="quiz-taking-modal">
+                <div class="modal-content quiz-taking-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="quiz-taking-header">
+                        <h2 id="quiz-taking-title"></h2>
+                        <div class="quiz-progress">
+                            <span id="current-question">1</span> of <span id="total-questions">0</span>
+                        </div>
+                    </div>
+                    <div id="quiz-taking-body">
+                    
+                    </div>
+                    <div class="quiz-taking-footer">
+                        <button class="btn-secondary" id="prev-question-btn">Previous</button>
+                        <button class="btn-primary" id="next-question-btn">Next</button>
+                        <button class="btn-complete" id="complete-quiz-btn">Complete Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="quiz-results-modal">
+                <div class="modal-content results-content">
+                    <span class="close-modal">&times;</span>
+                    <div class="results-header">
+                        <h2>Quiz Results</h2>
+                        <div class="results-score">
+                            Your Score: <span id="final-score">0</span>%
+                        </div>
+                        <div class="results-badge" id="results-badge">
+                            <i class="fas fa-medal"></i>
+                            <span>Beginner</span>
+                        </div>
+                    </div>
+                    <div class="results-details">
+                        <div class="results-summary">
+                            <div class="summary-item correct">
+                                <span id="correct-answers">0</span>
+                                <span>Correct</span>
+                            </div>
+                            <div class="summary-item incorrect">
+                                <span id="incorrect-answers">0</span>
+                                <span>Incorrect</span>
+                            </div>
+                            <div class="summary-item points">
+                                <span id="total-points">0</span>
+                                <span>Points Earned</span>
+                            </div>
+                        </div>
+                        <div class="leaderboard-update" id="leaderboard-update">
+                        </div>
+                    </div>
+                    <div class="results-actions">
+                        <button class="btn-primary" id="review-quiz-btn">Review Answers</button>
+                        <button class="btn-secondary" id="take-another-btn">Take Another Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>© 2025 QuizMaker App.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="contact.html">Contact Me</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
